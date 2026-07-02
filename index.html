@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remove BG AI — Hapus Background Gambar Otomatis</title>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Background decorative blobs -->
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+
+  <div class="app-wrapper">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <span>Remove<span class="accent">BG</span> AI</span>
+      </div>
+      <p class="tagline">Hapus background gambar secara instan dengan kekuatan AI</p>
+    </header>
+
+    <!-- Main Card -->
+    <main class="main-card glass">
+
+      <!-- STEP 1: Upload Area -->
+      <section id="uploadSection" class="upload-section">
+        <div id="dropzone" class="dropzone">
+          <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.webp" hidden>
+
+          <div class="dropzone-content">
+            <div class="upload-icon">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <h3>Seret & Lepas gambar di sini</h3>
+            <p>atau</p>
+            <button type="button" id="browseBtn" class="btn btn-primary">
+              <i class="fa-solid fa-folder-open"></i> Pilih Gambar
+            </button>
+            <span class="hint">Mendukung PNG, JPG, JPEG, WEBP • Maks 12MB</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: Preview & Process -->
+      <section id="previewSection" class="preview-section hidden">
+        <div class="preview-grid">
+
+          <div class="preview-box">
+            <span class="preview-label"><i class="fa-solid fa-image"></i> Gambar Asli</span>
+            <div class="preview-frame">
+              <img id="previewImage" src="" alt="Preview gambar asli">
+            </div>
+          </div>
+
+          <div class="preview-arrow">
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+
+          <div class="preview-box">
+            <span class="preview-label"><i class="fa-solid fa-sparkles"></i> Hasil</span>
+            <div class="preview-frame result-frame" id="resultFrame">
+              <div id="loadingState" class="loading-state hidden">
+                <div class="spinner"></div>
+                <p id="loadingText">Menghapus background...</p>
+                <div class="progress-bar">
+                  <div id="progressFill" class="progress-fill"></div>
+                </div>
+              </div>
+              <img id="resultImage" src="" alt="Hasil tanpa background" class="hidden checkerboard">
+              <div id="resultPlaceholder" class="result-placeholder">
+                <i class="fa-solid fa-image"></i>
+                <p>Hasil akan muncul di sini</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="processBtn" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Hapus Background
+          </button>
+          <button type="button" id="resetBtn" class="btn btn-outline">
+            <i class="fa-solid fa-rotate-left"></i> Upload Lagi
+          </button>
+          <a id="downloadBtn" href="#" download="removed-bg.png" class="btn btn-success hidden">
+            <i class="fa-solid fa-download"></i> Download PNG
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="app-footer">
+      <p>Ditenagai oleh <strong>Remove.bg API</strong> &middot; Dibuat dengan <i class="fa-solid fa-heart"></i></p>
+    </footer>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
